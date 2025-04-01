@@ -6,11 +6,13 @@ using Object = UnityEngine.Object;
 
 public static class TestUtils 
 {
+    #if UNITY_EDITOR
     /// <summary>
     /// Load asset by name, need to be instantiating if needed, work only in editor mode
     /// </summary>
     /// <typeparam name="T">Type of object returned</typeparam>
     /// <returns>Object Loaded</returns>
+    
     public static T LoadAssetEditorMode<T>(string assetName) where T : Object
     {
         string[] guids = AssetDatabase.FindAssets(assetName);
@@ -20,6 +22,7 @@ public static class TestUtils
         }
         return null;
     }
+    #endif
 
     /// <summary>
     /// Inject a value in a object with a specific property
