@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SpawningSystem
   m_EditorClassIdentifier: 
   updateType: 3
-  count: 10000
+  count: 520
   prefab: {fileID: 2613619747002956391, guid: 4f3648cb062231040b23b08ac68bf9e0, type: 3}

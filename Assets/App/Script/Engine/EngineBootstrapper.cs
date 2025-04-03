@@ -9,7 +9,7 @@ public class EngineBootstrapper : ScriptableObject
     private static string _pathDependenciesPrefab = "Prefabs/Dependencies";
     private static string _pathBootstrapperPrefab = "Prefabs/Bootstrapper";
     
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Initialization()
     {
         

@@ -14,11 +14,11 @@ public class SpawningSystem : ScriptableObjectSystem
         base.Enable();
         var hookerSpawn = new GameObject($"{prefab.name} Hooker");
 
-        int rootCount = Mathf.CeilToInt(Mathf.Sqrt(count));
+        int rootCount = Mathf.RoundToInt(Mathf.Pow(count,1.0f/3));
         
         for (int i = 0; i < count; i++)
         {
-            Instantiate(prefab, new Vector3Int(i%rootCount, (i / rootCount) % rootCount, i/rootCount),Quaternion.identity).transform.SetParent(hookerSpawn.transform);
+            Instantiate(prefab, new Vector3Int(i%rootCount, (i / rootCount) % rootCount, i/(rootCount*rootCount)),Quaternion.identity).transform.SetParent(hookerSpawn.transform);
         }
         
     }
