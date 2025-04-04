@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public abstract class ScriptableObjectDynamic : ScriptableObject
 {
-    private bool _initialized = false;
+    private bool _initialized;
 
     private void Awake()
     {

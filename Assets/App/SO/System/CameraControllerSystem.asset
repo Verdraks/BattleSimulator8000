@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a4e9fd82252764788bea7d67526f5c, type: 3}
-  m_Name: SpawningSystem
+  m_Script: {fileID: 11500000, guid: 5b0a0698b045480f8dacd41fe2510c0c, type: 3}
+  m_Name: CameraControllerSystem
   m_EditorClassIdentifier: 
-  updateType: 3
-  count: 5000
-  prefab: {fileID: 2613619747002956391, guid: 4f3648cb062231040b23b08ac68bf9e0, type: 3}
+  updateType: 1
+  speed: 5
+  querySystem: {fileID: 11400000, guid: 6bf9079bccee64f429de0c6adc85a6b0, type: 2}

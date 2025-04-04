@@ -12,7 +12,6 @@ public class EngineBootstrapper : ScriptableObject
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Initialization()
     {
-        
         LoadObject(_pathDependenciesPrefab);
         LoadObject(_pathBootstrapperPrefab);
     }

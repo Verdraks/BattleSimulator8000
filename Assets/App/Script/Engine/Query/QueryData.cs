@@ -12,7 +12,6 @@ public class QueryData : ScriptableObjectDynamic
     {
         base.Enable();
         Data = new Dictionary<int, Dictionary<Type, object>>();
-        Debug.Log("pass");
     }
 
     public override void Disable()

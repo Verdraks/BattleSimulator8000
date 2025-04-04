@@ -17,11 +17,11 @@ public abstract class HookerData<T> : MonoBehaviour where T : IQueryData, new()
     protected virtual void Awake()
     {
         Data = new T();
-        Data.Initialize(ref querySystem, gameObject.GetInstanceID());
+        querySystem.AddData<T>(gameObject.GetInstanceID(),Data);
     }
 
     protected virtual void OnDestroy()
     {
-        Data.Deinitialize(ref querySystem, gameObject.GetInstanceID());
+        querySystem.RemoveData<T>(gameObject.GetInstanceID(), Data);
     }
 }

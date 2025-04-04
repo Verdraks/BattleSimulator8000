@@ -13,10 +13,10 @@ public class RotationSystem : ScriptableObjectSystem
     
     public override void Update()
     {
-        if (!query.GetData<RotationData>(out var rotationData)) return;
+        if (!query.GetData<RotationTag, TransformData>(out var rotationData)) return;
         foreach (var data in rotationData)
         {
-            data.Transform.Rotate(Vector3.up,rotationSpeed*Time.deltaTime);
+            data.Item2.Transform.Rotate(Vector3.up,rotationSpeed*Time.deltaTime);
         }
     }
 }
