@@ -1,6 +1,6 @@
 {
     "name": "BoxTool.Utils.Editor",
-    "rootNamespace": "BoxTool.Utils.Editor",
+    "rootNamespace": "",
     "references": [
         "BoxTool.Utils"
     ],
@@ -11,7 +11,7 @@
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false

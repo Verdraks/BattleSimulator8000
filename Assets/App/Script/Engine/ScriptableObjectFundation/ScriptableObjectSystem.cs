@@ -8,7 +8,7 @@ public abstract class ScriptableObjectSystem : ScriptableObjectDynamic
     
     public UpdateType getUpdateType => updateType;
     
-    public virtual void Update(){}
+    public virtual void Execute(){}
 
     public enum UpdateType
     {

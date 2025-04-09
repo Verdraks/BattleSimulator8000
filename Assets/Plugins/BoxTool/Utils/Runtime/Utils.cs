@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using IEnumerator = System.Collections.IEnumerator;
 
@@ -53,6 +54,23 @@ public static class Utils
         hook.StartCoroutine(DelayCoroutine());
     }
     
+    #endregion
+
+    #region Task
+
+    public static async void AwaitTask(int delayMs,Action ev)
+    {
+        try
+        {
+            await Task.Delay(delayMs);
+            ev?.Invoke();
+        }
+        catch (Exception e)
+        {
+            Debug.LogWarning(e);
+        }
+    }
+
     #endregion
     
 }

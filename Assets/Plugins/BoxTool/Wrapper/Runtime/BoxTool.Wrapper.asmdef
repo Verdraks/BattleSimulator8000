@@ -1,6 +1,6 @@
 {
     "name": "BoxTool.Wrapper",
-    "rootNamespace": "BoxTool.Wrapper",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

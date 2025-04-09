@@ -42,6 +42,6 @@ public class HookerSystem : MonoBehaviour
 
     private void IterateSystems(ScriptableObjectSystem.UpdateType updateType)
     {
-        foreach (var system in _scriptableObjectSystemsCache[updateType]) system.Update();
+        foreach (var system in _scriptableObjectSystemsCache[updateType]) system.Execute();
     }
 }

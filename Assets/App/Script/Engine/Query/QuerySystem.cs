@@ -22,7 +22,39 @@ public sealed class QuerySystem : ScriptableObjectSystem
         base.Disable();
     }
 
+    public bool GetEntity(object value, out int idEntity)
+    {
+        idEntity = -1;
+        foreach (var key in queryData.Data.Keys)
+        {
+            if (queryData.Data[key].TryGetValue(value.GetType(), out object valueData))
+            {
+                if (valueData == value)
+                {
+                    idEntity = key;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public bool EntityIsValid(int idEntity) => queryData.Data.ContainsKey(idEntity);
 
+    public bool GetData<T>(int idEntity, out T value) where T : IQueryData
+    {
+        value = default(T);
+        if (queryData.Data.ContainsKey(idEntity))
+        {
+            if (queryData.Data[idEntity].TryGetValue(typeof(T), out object valueData))
+            {
+                value = (T)valueData;
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public bool GetData<T>(out List<T> data) where T: IQueryData
     {
         data = new List<T>();
@@ -63,6 +95,41 @@ public sealed class QuerySystem : ScriptableObjectSystem
                 && datasEntity.TryGetValue(typeof(T2), out var objT2))
             {
                 data.Add(new Tuple<T, T1,T2>((T)objT, (T1) objT1, (T2) objT2));
+            }
+        }
+        return data.Count > 0;
+    }
+    
+    public bool GetData<T, T1,T2,T3>(out List<Tuple<T,T1,T2,T3>> data) where T : IQueryData where T1 : IQueryData where T2 : IQueryData where T3 : IQueryData
+    {
+        data = new List<Tuple<T,T1,T2,T3>>();
+        
+        foreach (var datasEntity in queryData.Data.Values)
+        {
+            if (datasEntity.TryGetValue(typeof(T), out var objT) 
+                && datasEntity.TryGetValue(typeof(T1), out var objT1) 
+                && datasEntity.TryGetValue(typeof(T2), out var objT2)
+                && datasEntity.TryGetValue(typeof(T3), out var objT3))
+            {
+                data.Add(new Tuple<T, T1,T2,T3>((T)objT, (T1) objT1, (T2) objT2,(T3) objT3));
+            }
+        }
+        return data.Count > 0;
+    }
+    
+    public bool GetData<T, T1,T2,T3,T4>(out List<Tuple<T,T1,T2,T3,T4>> data) where T : IQueryData where T1 : IQueryData where T2 : IQueryData where T3 : IQueryData where T4 : IQueryData
+    {
+        data = new List<Tuple<T,T1,T2,T3,T4>>();
+        
+        foreach (var datasEntity in queryData.Data.Values)
+        {
+            if (datasEntity.TryGetValue(typeof(T), out var objT) 
+                && datasEntity.TryGetValue(typeof(T1), out var objT1) 
+                && datasEntity.TryGetValue(typeof(T2), out var objT2)
+                && datasEntity.TryGetValue(typeof(T3), out var objT3)
+                && datasEntity.TryGetValue(typeof(T4), out var objT4))
+            {
+                data.Add(new Tuple<T, T1,T2,T3,T4>((T)objT, (T1) objT1, (T2) objT2,(T3) objT3, (T4) objT4));
             }
         }
         return data.Count > 0;
@@ -115,6 +182,14 @@ public sealed class QuerySystem : ScriptableObjectSystem
         queryData.Data[idEntity].Remove(typeof(T));
         if (queryData.Data[idEntity].Count == 0) queryData.Data.Remove(idEntity);
         
+        return true;
+    }
+
+    public bool RemoveEntity(int idEntity)
+    {
+        if (queryData.Data == null) return false;
+        if (!queryData.Data.ContainsKey(idEntity)) return false;
+        queryData.Data.Remove(idEntity);
         return true;
     }
 }
