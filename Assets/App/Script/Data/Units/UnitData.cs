@@ -22,6 +22,8 @@ public class AttackDistanceData : IQueryData
 
 public class LifeData : IQueryData
 {
+    public LifeData() => CurrentLife = MaxLife;
+
     public short MaxLife;
     public short CurrentLife;
 }

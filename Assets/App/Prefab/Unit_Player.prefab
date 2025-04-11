@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   querySystem: {fileID: 11400000, guid: 6bf9079bccee64f429de0c6adc85a6b0, type: 2}
+  life: 5
   layerTeam: 6
   detectionRange: 100000
+  cooldown: 1
   navMeshAgent: {fileID: 5734839024505132888}

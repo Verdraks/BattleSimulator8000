@@ -1,4 +1,6 @@
 ﻿
+using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Unity.Collections;
 using UnityEngine;
@@ -16,27 +18,46 @@ public class HealthSystem : ScriptableObjectSystem
     
     public override void Execute()
     {
-        BatchDamageEntity();
+        if (querySystem.GetData<TransformData, UnitDamageTag, LifeData>(out var unitsDamageTag))
+        {
+            BatchDamageReceive(unitsDamageTag);
+            BatchDamageFeedback(unitsDamageTag);
+        }
     }
 
-    private void BatchDamageEntity()
+    private void BatchDamageReceive(List<Tuple<TransformData, UnitDamageTag, LifeData>> unitsDamageTag)
     {
-        if (querySystem.GetData<TransformData, UnitDamageTag>(out var unitsDamageTag))
+        foreach (var unit in unitsDamageTag)
         {
-            float valueLerp;
-            
-            foreach (var unit in unitsDamageTag)
+            if (unit.Item2.LerpInternal <= 0)
             {
-                valueLerp = animationCurveDamage.Evaluate( Mathf.Lerp(0, 1, unit.Item2.LerpInternal));
-                unit.Item2.LerpInternal += Time.deltaTime;
-                unit.Item1.Transform.localScale = new Vector3(valueLerp,valueLerp,valueLerp);
-
-                if (unit.Item2.LerpInternal > 1f)
+                unit.Item3.CurrentLife -= unit.Item2.DamageReceive;
+                
+                if (unit.Item3.CurrentLife <= 0)
                 {
-                    querySystem.GetEntity(unit.Item2, out var entity);
-                    querySystem.RemoveData<UnitDamageTag>(entity, unit.Item2);
+                    Destroy(unit.Item1.Transform.gameObject);
                 }
+                
             }
+            else if (unit.Item2.LerpInternal >= 1)
+            {
+                querySystem.GetEntity(unit.Item2, out var entity);
+                querySystem.RemoveData<UnitDamageTag>(entity, unit.Item2);
+            }
+            
+        }
+    }
+    
+    private void BatchDamageFeedback(List<Tuple<TransformData, UnitDamageTag, LifeData>> unitsDamageTag)
+    {
+        float valueLerp;
+
+        foreach (var unit in unitsDamageTag)
+        {
+            valueLerp = animationCurveDamage.Evaluate( Mathf.Lerp(0, 1, unit.Item2.LerpInternal));
+            unit.Item2.LerpInternal += Time.deltaTime;
+            unit.Item1.Transform.localScale = new Vector3(valueLerp,valueLerp,valueLerp);
+
         }
     }
 }

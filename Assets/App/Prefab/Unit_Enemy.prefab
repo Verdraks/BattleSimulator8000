@@ -156,8 +156,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   querySystem: {fileID: 11400000, guid: 6bf9079bccee64f429de0c6adc85a6b0, type: 2}
+  life: 5
   layerTeam: 7
   detectionRange: 1000
+  cooldown: 1
   navMeshAgent: {fileID: 5263515946586006309}
 --- !u!65 &6510765071353978975
 BoxCollider:

@@ -51,9 +51,8 @@ public class UnitSystem : ScriptableObjectSystem
                     closest = target.Item1;
                 }
             }
-
+            if (closest == null) continue;
             querySystem.GetEntity(closest, out var entityId);
-            Debug.Log(closest);
             unit.Item2.EntityTarget = entityId;
         }
         
