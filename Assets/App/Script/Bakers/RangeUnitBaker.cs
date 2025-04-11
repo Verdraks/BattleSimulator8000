@@ -1,8 +1,9 @@
-using System;
+﻿
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
-public class UnitBaker : BakerData
+public class RangeUnitBaker : BakerData
 {
     [Header("Settings")] 
     [SerializeField] private short life = 5;
@@ -13,6 +14,10 @@ public class UnitBaker : BakerData
     [Header("References")]
     [SerializeField] private NavMeshAgent navMeshAgent;
 
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private Transform projectileAnchor;
+    
+    
     protected override void Bake()
     {
         var movementData = new MovementData
@@ -36,6 +41,12 @@ public class UnitBaker : BakerData
             Cooldown = cooldown
         };
 
+        var attackDistanceData = new AttackDistanceData()
+        {
+            attackAnchor = projectileAnchor,
+            PrefabProjectile = projectilePrefab
+        };
+
         var lifeData = new LifeData()
         {
             MaxLife = life,
@@ -46,7 +57,8 @@ public class UnitBaker : BakerData
         querySystem.AddData<TransformData>(ID,transformData);
         querySystem.AddData<UnitTeam>(ID,teamData);
         querySystem.AddData<AttackData>(ID, attackData);
-        querySystem.AddData<UnitMeleeTag>(ID, new UnitMeleeTag());
+        querySystem.AddData<AttackDistanceData>(ID, attackDistanceData);
+        querySystem.AddData<UnitRangedTag>(ID, new UnitRangedTag());
         querySystem.AddData<LifeData>(ID,lifeData);
     }
 }

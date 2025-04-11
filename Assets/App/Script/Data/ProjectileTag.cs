@@ -1,1 +1,4 @@
-﻿public class ProjectileTag : IQueryData {}
+﻿public class ProjectileTag : IQueryData
+{
+    public float Speed;
+}

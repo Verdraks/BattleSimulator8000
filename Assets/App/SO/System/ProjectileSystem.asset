@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ProjectileSystem
   m_EditorClassIdentifier: 
   updateType: 0
+  querySystem: {fileID: 11400000, guid: 6bf9079bccee64f429de0c6adc85a6b0, type: 2}

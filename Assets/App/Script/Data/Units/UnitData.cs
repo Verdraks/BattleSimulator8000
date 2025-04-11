@@ -18,6 +18,8 @@ public class AttackData : IQueryData
 public class AttackDistanceData : IQueryData
 {
     public GameObject PrefabProjectile;
+
+    public Transform attackAnchor;
 }
 
 public class LifeData : IQueryData

@@ -6,9 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "UnitSystem", menuName = "SO/Systems/UnitSystem")]
 public class UnitSystem : ScriptableObjectSystem
 {
-    [Title("Settings")]
-    [SerializeField] private LayerMask layerMaskUnits;
-    
     [Title("References")]
     [SerializeField] private QuerySystem querySystem;
     

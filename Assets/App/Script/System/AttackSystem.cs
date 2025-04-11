@@ -27,7 +27,7 @@ public class AttackSystem : ScriptableObjectSystem
                 if (dist > unit.Item1.NavMeshAgent.stoppingDistance) continue;
                 
                 if (Time.time - unit.Item2.LastAttackTime < unit.Item2.Cooldown) continue;
-                Debug.Log("attack");
+                
                 if (querySystem.GetEntity(unit.Item1, out var entity))
                 {
                     querySystem.AddData<UnitDamageTag>(entity, new UnitDamageTag()
@@ -54,8 +54,9 @@ public class AttackSystem : ScriptableObjectSystem
                 if (dist > unit.Item1.NavMeshAgent.stoppingDistance) continue;
                 
                 if (Time.time - unit.Item2.LastAttackTime < unit.Item2.Cooldown) continue;
-                
-                if (unit.Item3.PrefabProjectile) InstantiateAsync(unit.Item3.PrefabProjectile);
+
+                if (unit.Item3.PrefabProjectile)
+                    InstantiateAsync(unit.Item3.PrefabProjectile, unit.Item3.attackAnchor.position, unit.Item3.attackAnchor.rotation);
 
                 unit.Item2.LastAttackTime = Time.time;
             }
