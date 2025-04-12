@@ -43,7 +43,7 @@ public class RangeUnitBaker : BakerData
 
         var attackDistanceData = new AttackDistanceData()
         {
-            attackAnchor = projectileAnchor,
+            AttackAnchor = projectileAnchor,
             PrefabProjectile = projectilePrefab
         };
 

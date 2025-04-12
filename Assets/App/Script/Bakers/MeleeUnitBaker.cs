@@ -9,6 +9,7 @@ public class MeleeUnitBaker : BakerData
     [SerializeField] private byte layerTeam;
     [SerializeField] private float detectionRange = 1000;
     [SerializeField] private float cooldown = 1.5f;
+    [SerializeField] private short attackDamage = 1;
     
     [Header("References")]
     [SerializeField] private NavMeshAgent navMeshAgent;
@@ -33,7 +34,8 @@ public class MeleeUnitBaker : BakerData
 
         var attackData = new AttackData()
         {
-            Cooldown = cooldown
+            Cooldown = cooldown,
+            AttackDamage = attackDamage
         };
 
         var lifeData = new LifeData()

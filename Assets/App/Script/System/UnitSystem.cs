@@ -68,10 +68,6 @@ public class UnitSystem : ScriptableObjectSystem
             {
                 unit.Item2.NavMeshAgent.SetDestination(entityTransformData.Transform.position);
             }
-            else
-            {
-                unit.Item2.NavMeshAgent.ResetPath();
-            }
         }
     }
 }

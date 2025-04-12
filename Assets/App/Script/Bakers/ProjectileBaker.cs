@@ -14,7 +14,13 @@ public class ProjectileBaker : BakerData
         {
             Speed = speed,
         };
+
+        var transformData = new TransformData()
+        {
+            Transform = transform,
+        };
         
         querySystem.AddData<ProjectileTag>(ID, projectileData);
+        querySystem.AddData<TransformData>(ID, transformData);
     }
 }

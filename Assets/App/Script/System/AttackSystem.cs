@@ -32,7 +32,7 @@ public class AttackSystem : ScriptableObjectSystem
                 {
                     querySystem.AddData<UnitDamageTag>(entity, new UnitDamageTag()
                     {
-                        DamageReceive = 1
+                        DamageReceive = unit.Item2.AttackDamage
                     });
                 }
                 
@@ -56,7 +56,7 @@ public class AttackSystem : ScriptableObjectSystem
                 if (Time.time - unit.Item2.LastAttackTime < unit.Item2.Cooldown) continue;
 
                 if (unit.Item3.PrefabProjectile)
-                    InstantiateAsync(unit.Item3.PrefabProjectile, unit.Item3.attackAnchor.position, unit.Item3.attackAnchor.rotation);
+                    InstantiateAsync(unit.Item3.PrefabProjectile, unit.Item3.AttackAnchor.position, unit.Item3.AttackAnchor.rotation);
 
                 unit.Item2.LastAttackTime = Time.time;
             }

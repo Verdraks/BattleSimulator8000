@@ -13,13 +13,14 @@ public class AttackData : IQueryData
 {
     public float Cooldown;
     public float LastAttackTime;
+    public short AttackDamage;
 }
 
 public class AttackDistanceData : IQueryData
 {
     public GameObject PrefabProjectile;
 
-    public Transform attackAnchor;
+    public Transform AttackAnchor;
 }
 
 public class LifeData : IQueryData

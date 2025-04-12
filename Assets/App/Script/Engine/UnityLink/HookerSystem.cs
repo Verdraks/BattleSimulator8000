@@ -26,12 +26,12 @@ public class HookerSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        foreach (var system in scriptableObjectSystems) system.Enable();
+        foreach (var system in scriptableObjectSystems) if (!system.initialized) system.Enable();
     }
 
     private void OnDisable()
     {
-        foreach (var system in scriptableObjectSystems) system.Disable();
+        foreach (var system in scriptableObjectSystems) if (system.initialized) system.Disable();
     }
 
     private void Update() => IterateSystems(ScriptableObjectSystem.UpdateType.Update);

@@ -5,25 +5,25 @@ using UnityEngine;
 /// </summary>
 public abstract class ScriptableObjectDynamic : ScriptableObject
 {
-    private bool _initialized;
+    public bool initialized { get; private set; }
 
     private void Awake()
     {
-        if (!_initialized && Application.isPlaying) Enable();
+        if (!initialized && Application.isPlaying) Enable();
     }
 
     private void OnDestroy()
     {
-        if (_initialized && Application.isPlaying) Disable();
+        if (initialized && Application.isPlaying) Disable();
     }
 
     public virtual void Enable()
     {
-        _initialized = true;
+        initialized = true;
     }
 
     public virtual void Disable()
     {
-        _initialized = false;
+        initialized = false;
     }
 }

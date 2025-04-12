@@ -49,8 +49,9 @@ MonoBehaviour:
   querySystem: {fileID: 11400000, guid: 6bf9079bccee64f429de0c6adc85a6b0, type: 2}
   life: 5
   layerTeam: 0
-  detectionRange: 1000
+  detectionRange: 10000
   cooldown: 1.5
+  attackDamage: 1
   navMeshAgent: {fileID: 4275217320022063091}
 --- !u!195 &4275217320022063091
 NavMeshAgent:
@@ -66,14 +67,14 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.65
+  m_StoppingDistance: 2.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!1 &5854944213493689342
 GameObject:
   m_ObjectHideFlags: 0

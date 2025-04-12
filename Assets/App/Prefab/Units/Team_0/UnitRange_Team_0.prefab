@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 343383889853082966, guid: 33ddf5c1770dfe04d8f107368a141597, type: 3}
       propertyPath: m_Name
-      value: UnitRange Variant
+      value: UnitRange_Team_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508863372348269244, guid: 33ddf5c1770dfe04d8f107368a141597, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 7093318399994968726, guid: 33ddf5c1770dfe04d8f107368a141597, type: 3}
       propertyPath: m_LocalPosition.x

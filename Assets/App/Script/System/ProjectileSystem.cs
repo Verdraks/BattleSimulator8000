@@ -8,8 +8,9 @@ public class ProjectileSystem : ScriptableObjectSystem
     [Title("References")]
     [SerializeField] private QuerySystem querySystem;
 
-    private const float SizeBoxDetection = 2.5f;
-    
+    private const float SizeBoxDetection = 1f;
+    private const short DamageProjectile = 3;
+
     public override void Execute()
     {
         if (querySystem.GetData<TransformData,ProjectileTag>(out var projectilesData))
@@ -18,24 +19,31 @@ public class ProjectileSystem : ScriptableObjectSystem
             {
                 projectile.Item1.Transform.position += projectile.Item1.Transform.forward * (projectile.Item2.Speed * Time.deltaTime);
                 
+                projectile.Item2.LifeSpan += Time.deltaTime;
+                
+                if (projectile.Item2.LifeSpan > ProjectileTag.LifeTime) Destroy(projectile.Item1.Transform.gameObject);
+                
             }
 
             if (querySystem.GetData<TransformData,MovementData>(out var transformsData))
             {
                 foreach (var projectile in projectilesData)
                 {
+                    Vector2 projectilePosition = new Vector2(projectile.Item1.Transform.position.x, projectile.Item1.Transform.position.z);
+                    
                     foreach (var transformData in transformsData)
                     {
-                        if (projectile.Item1.Transform == transformData.Item1.Transform) continue;
-
-                        if (Vector3.Distance(projectile.Item1.Transform.position, transformData.Item1.Transform.position) <=
+                        
+                        Vector2 transformPosition = new Vector2(transformData.Item1.Transform.position.x, transformData.Item1.Transform.position.z);
+                        
+                        if (Vector2.Distance(projectilePosition, transformPosition) <=
                             SizeBoxDetection)
                         {
-                            if (querySystem.GetEntity(transformData.Item1.Transform, out var entity))
+                            if (querySystem.GetEntity(transformData.Item1, out var entity))
                             {
                                 querySystem.AddData<UnitDamageTag>(entity, new UnitDamageTag()
                                 {
-                                    DamageReceive = 1
+                                    DamageReceive = DamageProjectile
                                 });
                                 
                                 Destroy(projectile.Item1.Transform.gameObject);

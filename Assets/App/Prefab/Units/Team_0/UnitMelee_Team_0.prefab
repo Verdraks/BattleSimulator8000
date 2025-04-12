@@ -50,7 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4243505665193420034, guid: 7c20c3f7336c4c345b5be16f6a788f20, type: 3}
       propertyPath: m_Name
-      value: UnitMelee Variant
+      value: UnitMelee_Team_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275217320022063091, guid: 7c20c3f7336c4c345b5be16f6a788f20, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 6774901265199203217, guid: 7c20c3f7336c4c345b5be16f6a788f20, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
