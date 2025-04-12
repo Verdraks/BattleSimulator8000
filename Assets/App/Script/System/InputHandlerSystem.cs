@@ -101,7 +101,7 @@ public class InputHandlerSystem : ScriptableObjectSystem
     public override void Disable()
     {
      
-        _inputActionMain.Disable();
+        if (_inputActionMain == null) return;
         
         _inputActionMain.Action.Destroy.performed -=InputDestroy;
         _inputActionMain.Action.Destroy.canceled -= InputDestroy;
@@ -119,7 +119,9 @@ public class InputHandlerSystem : ScriptableObjectSystem
         _inputActionMain.Controller.Look.performed += InputLook;
         _inputActionMain.Controller.Look.canceled += InputLook;
         
-        _inputActionMain.Dispose();
+        _inputActionMain.Disable();
+        
+        _inputActionMain = null;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

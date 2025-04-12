@@ -42,7 +42,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3710045901564801995, guid: 144cf792f36d584479bb5c411f66375f, type: 3}
       propertyPath: m_Name
-      value: HookerSystemEngine
+      value: HookerQuery
       objectReference: {fileID: 0}
     - target: {fileID: 9125678703008505242, guid: 144cf792f36d584479bb5c411f66375f, type: 3}
       propertyPath: m_LocalPosition.x
